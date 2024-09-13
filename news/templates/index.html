@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> News Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+        {% include "header.html" %}
+
+
+    <div class=" flex flex-1 h-[90vh]">
+        <div class="w-3/12 flex flex-1 flex-col p-4 scroll-slate-300   overflow-y-scroll">
+
+            <a href="{% url 'homepage' %}" class=" border text-black mt-2 text-xl   py-2 px-4 hover:bg-gray-400 rounded border-lg">All News</a>
+            {% for category in categories%}
+               <a href="{% url 'filter' category.cat_title %}" class=" border text-black mt-2 text-xl   py-2 px-4 hover:bg-gray-400 rounded border-lg">{{category.cat_title}}</a>
+            {% endfor %}
+        </div>
+        <div class="w-9/12 p-4  scroll-slate-300  overflow-y-scroll">
+            {% for post in posts %}
+            <div class="border-black border rounded-xl p-4 flex flex-1 flex-row mt-4">
+                <div class="w-3/12">
+                    <img src="{{post.image.url}}" alt="" class="w-full rounded-xl h-[200px] object-cover">
+                </div>
+                <div class="w-9/12 items-center px-6">
+                   
+                    <div class="flex flex-1 flex-col ">
+                        <div class="flex flex-1 justify-between">
+                            <p class="text-lg  font-semibold">
+                                <span class="font-black text-2xl">Title:</span>
+                            <span class="text-red-500 font-normal">{{post.title}}</span></p>
+                            <p class="text-lg">
+                                <span class="font-bold text-green-700">Category:</span>
+                            <span class="text-2xl font-semibold text-orange-500">{{post.category.cat_title}}</span></p>
+                        </div>
+                        <div class="flex flex-1 justify-between">
+                            <p class="text-lg ">
+                                <span class="text-xl text-blue-500 font-bold">Author:</span>
+                            <span class="font-semibold">{{post.author}}</span></p>
+                            <p class="text-lg ">Status:</p>
+                        </div>
+                    </div>
+                    <p><span class="text-2xl font-semibold text-yellow-800">Content:</span>
+                       <span class="text-sm">{{post.content}}</span>
+                    </p>
+                    <a href="{%url 'viewpost' post.id%}" class="bg-red-700 text-white px-3 py-2 justify-between mt-2 float-end items-center rounded text-xl">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>

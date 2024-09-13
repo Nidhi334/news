@@ -1,0 +1,14 @@
+
+    <div class="flex flex-1">
+        <div class="bg-teal-600 text-2xl h-[10vh]  flex flex-1 font-bold px-4 py-4 text-white gap-20">News
+
+            <div class="flex-1 text-xl px-80 font-normal">
+                <form action="{% url 'search'%}" method="get">
+                    <input type="search" size="40" name="search" class="border text-black rounded-xl px-3  gap-2 py-2"
+                        placeholder="search any category....">
+                    <input type="submit" class="bg-black text-white px-3 rounded-xl py-2" value="Go">
+                </form>
+            </div>
+          
+        </div>
+    </div>
